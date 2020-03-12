@@ -8,7 +8,11 @@ const BearCard = props => {
     const form = useSelector(state => state.form)
     const actions = bindActionCreators(bearActions, useDispatch());
     const deleteBear = async () => {
-        const result = await axios.delete(`http://localhost:8080/api/bears/${props.id}`)
+        const result = await axios.delete(`http://localhost:8080/api/bears/${props.id}`,{
+            name:form.name,
+            weight:form.weight,
+            img:form.img,
+        })
         actions.deleteBear(props.id)
         //dispatch({ type: 'DELETE_BEAR', id: props.id })
     }
